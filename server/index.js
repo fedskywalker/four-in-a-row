@@ -292,8 +292,8 @@ app.get('/health', (req, res) => {
 // Start server
 const PORT = process.env.PORT || 3001;
 
-server.listen(PORT, () => {
-  console.log(`🎮 Four in a Row server running on port ${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`🎮 Four in a Row server running on 0.0.0.0:${PORT}`);
 });
 
 // Graceful shutdown
