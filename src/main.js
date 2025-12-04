@@ -304,9 +304,11 @@ class FourInARowApp {
 
     try {
       await this.connectToServer();
-      await this.network.createGame();
+      const gameCode = await this.network.createGame();
 
-      this.elements.gameCodeText.textContent = this.network.gameCode;
+      // Set the game code from the returned value
+      this.network.gameCode = gameCode;
+      this.elements.gameCodeText.textContent = gameCode;
       this.showScreen('waiting');
 
     } catch (error) {
