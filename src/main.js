@@ -492,6 +492,10 @@ class FourInARowApp {
       }
     }
 
+    // Remember which player is making this move BEFORE the state changes
+    const movingPlayer = this.gameState.currentPlayer;
+    const movingColor = getPlayerColor(movingPlayer);
+
     // Try to make the move
     const result = this.gameState.makeMove(col);
 
@@ -505,10 +509,8 @@ class FourInARowApp {
     this.isProcessingMove = true;
     this.touchController.setEnabled(false);
 
-    // Animate the piece drop
-    await this.animateDrop(col, result.row, getPlayerColor(
-      this.gameState.currentPlayer === PLAYER_RED ? PLAYER_YELLOW : PLAYER_RED
-    ));
+    // Animate the piece drop with the correct color
+    await this.animateDrop(col, result.row, movingColor);
 
     // Send move to opponent (online mode)
     if (this.gameMode === 'online' || this.gameMode === 'join') {
@@ -548,14 +550,16 @@ class FourInARowApp {
     this.isProcessingMove = true;
     this.touchController.setEnabled(false);
 
+    // Remember which player is making this move BEFORE the state changes
+    const movingPlayer = this.gameState.currentPlayer;
+    const movingColor = getPlayerColor(movingPlayer);
+
     // Apply the move to game state
     const result = this.gameState.makeMove(data.column);
 
     if (result.success) {
-      // Animate opponent's piece
-      await this.animateDrop(data.column, data.row, getPlayerColor(
-        this.gameState.currentPlayer === PLAYER_RED ? PLAYER_YELLOW : PLAYER_RED
-      ));
+      // Animate opponent's piece with the correct color
+      await this.animateDrop(data.column, data.row, movingColor);
 
       // Handle game end
       if (result.winner) {
