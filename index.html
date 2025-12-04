@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a1a2e">
+  <title>Four in a Row</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Main Menu Screen -->
+    <div id="menu-screen" class="screen active">
+      <div class="menu-container">
+        <div class="logo-container">
+          <div class="logo-pieces">
+            <span class="logo-piece red"></span>
+            <span class="logo-piece yellow"></span>
+            <span class="logo-piece red"></span>
+            <span class="logo-piece yellow"></span>
+          </div>
+          <h1 class="game-title">Four in a Row</h1>
+          <p class="game-subtitle">Connect 4 to Win!</p>
+        </div>
+
+        <div class="menu-buttons">
+          <button class="btn btn-primary" id="btn-create-game">
+            <span class="btn-icon">🎮</span>
+            Create Game
+          </button>
+          <button class="btn btn-secondary" id="btn-join-game">
+            <span class="btn-icon">👥</span>
+            Join Game
+          </button>
+          <button class="btn btn-tertiary" id="btn-local-game">
+            <span class="btn-icon">📱</span>
+            Local 2 Player
+          </button>
+        </div>
+
+        <div class="menu-footer">
+          <button class="btn-icon-only" id="btn-settings" aria-label="Settings">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+          </button>
+          <button class="btn-icon-only" id="btn-sound-toggle" aria-label="Toggle Sound">
+            <svg class="icon-sound-on" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            <svg class="icon-sound-off hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+          </button>
+          <button class="btn-icon-only" id="btn-help" aria-label="How to Play">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Join Game Screen -->
+    <div id="join-screen" class="screen">
+      <div class="join-container">
+        <button class="btn-back" id="btn-back-join">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        </button>
+        <h2 class="screen-title">Join Game</h2>
+        <p class="screen-subtitle">Enter the game code from your friend</p>
+
+        <div class="code-input-container">
+          <input type="text" id="game-code-input" class="code-input" maxlength="6" placeholder="XXXXXX" autocomplete="off" autocapitalize="characters">
+        </div>
+
+        <button class="btn btn-primary" id="btn-join-submit" disabled>
+          Join Game
+        </button>
+
+        <p class="error-message hidden" id="join-error"></p>
+      </div>
+    </div>
+
+    <!-- Waiting Screen -->
+    <div id="waiting-screen" class="screen">
+      <div class="waiting-container">
+        <button class="btn-back" id="btn-back-waiting">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        </button>
+
+        <div class="waiting-spinner">
+          <div class="spinner-ring"></div>
+        </div>
+
+        <h2 class="waiting-title">Waiting for opponent...</h2>
+        <p class="waiting-subtitle">Share this code with your friend</p>
+
+        <div class="game-code-display">
+          <span id="game-code-text">------</span>
+          <button class="btn-copy" id="btn-copy-code" aria-label="Copy code">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </button>
+        </div>
+
+        <button class="btn btn-secondary" id="btn-cancel-waiting">
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+      <div class="game-container">
+        <!-- Header -->
+        <div class="game-header">
+          <button class="btn-back" id="btn-leave-game">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+          </button>
+
+          <div class="header-controls">
+            <button class="btn-icon-only btn-small" id="btn-game-sound">
+              <svg class="icon-sound-on" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+              <svg class="icon-sound-off hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Player Info -->
+        <div class="players-container">
+          <div class="player-card player-red" id="player-1-card">
+            <div class="player-piece red"></div>
+            <div class="player-info">
+              <span class="player-name" id="player-1-name">Player 1</span>
+              <span class="player-status" id="player-1-status"></span>
+            </div>
+          </div>
+
+          <div class="vs-badge">VS</div>
+
+          <div class="player-card player-yellow" id="player-2-card">
+            <div class="player-piece yellow"></div>
+            <div class="player-info">
+              <span class="player-name" id="player-2-name">Player 2</span>
+              <span class="player-status" id="player-2-status"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Turn Indicator -->
+        <div class="turn-indicator" id="turn-indicator">
+          <span class="turn-text">Your Turn</span>
+          <div class="thinking-dots hidden">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Game Board -->
+        <div class="board-wrapper">
+          <div class="board-container" id="board-container">
+            <!-- Column indicators -->
+            <div class="column-indicators" id="column-indicators"></div>
+
+            <!-- The game board -->
+            <div class="board" id="game-board">
+              <div class="board-frame">
+                <div class="board-grid" id="board-grid">
+                  <!-- Cells generated by JS -->
+                </div>
+              </div>
+              <div class="board-stand"></div>
+              <div class="release-lever"></div>
+            </div>
+
+            <!-- Floating piece for drag -->
+            <div class="floating-piece hidden" id="floating-piece"></div>
+          </div>
+        </div>
+
+        <!-- Piece Tray -->
+        <div class="piece-tray" id="piece-tray">
+          <div class="tray-pieces" id="tray-pieces">
+            <!-- Pieces generated by JS -->
+          </div>
+          <p class="tray-hint">Tap a column or drag to play</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="game-actions">
+          <button class="btn btn-secondary btn-small" id="btn-new-game-ingame" style="display: none;">
+            New Game
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="modal hidden">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content result-modal-content">
+        <div class="confetti-container" id="confetti-container"></div>
+
+        <div class="result-icon" id="result-icon"></div>
+        <h2 class="result-title" id="result-title">You Win!</h2>
+        <p class="result-message" id="result-message">Congratulations!</p>
+
+        <div class="result-actions">
+          <button class="btn btn-primary" id="btn-play-again">
+            Play Again
+          </button>
+          <button class="btn btn-secondary" id="btn-main-menu">
+            Main Menu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content settings-modal-content">
+        <div class="modal-header">
+          <h2>Settings</h2>
+          <button class="btn-close" id="btn-close-settings">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
+        </div>
+
+        <div class="settings-group">
+          <label class="setting-item">
+            <span>Sound Effects</span>
+            <input type="checkbox" id="setting-sound" checked>
+            <span class="toggle"></span>
+          </label>
+
+          <label class="setting-item">
+            <span>Vibration</span>
+            <input type="checkbox" id="setting-vibration" checked>
+            <span class="toggle"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div id="help-modal" class="modal hidden">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content help-modal-content">
+        <div class="modal-header">
+          <h2>How to Play</h2>
+          <button class="btn-close" id="btn-close-help">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
+        </div>
+
+        <div class="help-content">
+          <div class="help-item">
+            <div class="help-icon">1</div>
+            <p>Take turns dropping colored pieces into the grid</p>
+          </div>
+          <div class="help-item">
+            <div class="help-icon">2</div>
+            <p>Pieces fall to the lowest available space in the column</p>
+          </div>
+          <div class="help-item">
+            <div class="help-icon">3</div>
+            <p>Connect 4 pieces in a row (horizontally, vertically, or diagonally) to win!</p>
+          </div>
+          <div class="help-item">
+            <div class="help-icon">
+              <div class="mini-board">
+                <span class="mini-piece red"></span>
+                <span class="mini-piece red"></span>
+                <span class="mini-piece red"></span>
+                <span class="mini-piece red"></span>
+              </div>
+            </div>
+            <p>Be the first to connect four to claim victory!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div id="toast-container"></div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
